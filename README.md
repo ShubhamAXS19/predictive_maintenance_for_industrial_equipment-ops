@@ -21,7 +21,7 @@ The project directory is organized as follows:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/predictive_maintenance.git
+git clone https://github.com/ShubhamAXS19/predictive_maintenance.git
 cd predictive_maintenance
 ```
 
@@ -30,45 +30,45 @@ source venv/bin/activate # On Windows use `venv\Scripts\activate`
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# src/data_ingestion.py
+#### src/data_ingestion.py
 
 def get_db_connection(): # Replace with your AWS RDS credentials
 engine = create_engine('postgresql://username:password@rds_endpoint:port/dbname')
 return engine.connect()
 
-# Fetch raw data from AWS RDS
+#### Fetch raw data from AWS RDS
 
 python src/data_ingestion.py
 
-# Clean the data using SQL scripts
+#### Clean the data using SQL scripts
 
 python src/clean_data.py
 
-# Generate features using SQL scripts
+#### Generate features using SQL scripts
 
 python src/feature_engineering.py
 
 python src/train_model.py
 
-# Build Docker image
+#### Build Docker image
 
 docker build -t predictive-maintenance-app .
 
-# Run Docker container
+#### Run Docker container
 
 docker run -p 5000:5000 predictive-maintenance-app
 
-# Add data files to DVC
+#### Add data files to DVC
 
 dvc add data/raw/sensor_data.csv
 dvc add data/processed/sensor_features.csv
 
-# Commit changes
+#### Commit changes
 
 git add data/raw/sensor_data.csv.dvc data/processed/sensor_features.csv.dvc
 git commit -m "Add raw and processed data with DVC"
 
-# Configure DVC remote (example with S3)
+#### Configure DVC remote (example with S3)
 
 dvc remote add -d myremote s3://mybucket/dvcstore
 dvc push
